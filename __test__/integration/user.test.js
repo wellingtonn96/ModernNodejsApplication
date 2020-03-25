@@ -7,6 +7,7 @@ describe('suite de test para manipulação de usuarios', () => {
 
     expect(response.statusCode).toBe(200);
   });
+
   it('deve cadasdtrar usuarios', async () => {
     const response = await request(app)
       .post('/users')
@@ -15,7 +16,20 @@ describe('suite de test para manipulação de usuarios', () => {
         email:'weltossousa@gmail.com'
       })
 
-    console.log(response)
+    console.log(response.body)
+    expect(response.statusCode).toBe(200);
+  });
+
+  it('deve cadasdtrar endereços', async () => {
+    const response = await request(app)
+      .post('/addresses/11')
+      .send({
+        zipcode: '08390-541',
+        street: 'Rua São Jorge',
+        number: 123
+      })
+
+    console.log(response.body)
     expect(response.statusCode).toBe(200);
   });
 });
