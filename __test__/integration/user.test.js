@@ -22,7 +22,7 @@ describe('suite de test para manipulação de usuarios', () => {
 
   it('deve cadasdtrar endereços', async () => {
     const response = await request(app)
-      .post('/addresses/11')
+      .post('/addresses/1')
       .send({
         zipcode: '08390-541',
         street: 'Rua São Jorge',
@@ -32,4 +32,24 @@ describe('suite de test para manipulação de usuarios', () => {
     console.log(response.body)
     expect(response.statusCode).toBe(200);
   });
+
+  it('deve listar o endereço que pertence a um user', async () => {
+    const response = await request(app)
+      .get('/addresses/1');
+
+    console.log(response.body);
+    expect(response.statusCode).toBe(200);
+  });
+
+  it.only('deve criar uma technologia', async () => {
+    const response = await request(app)
+      .post('/techs/1')
+      .send({
+        name: "Node.js"
+      })
+
+    console.log(response.body)
+    expect(response.statusCode).toBe(200);
+  });
+
 });
